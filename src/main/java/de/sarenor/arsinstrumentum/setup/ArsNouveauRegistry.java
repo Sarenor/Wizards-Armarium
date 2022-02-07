@@ -1,6 +1,6 @@
-package com.example.examplemod;
+package de.sarenor.arsinstrumentum.setup;
 
-import com.example.examplemod.glyphs.TestEffect;
+import de.sarenor.arsinstrumentum.glyphs.TestEffect;
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 

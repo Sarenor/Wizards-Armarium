@@ -1,16 +1,16 @@
-package com.example.examplemod;
+package de.sarenor.arsinstrumentum.setup;
 
 import com.hollingsworth.arsnouveau.api.RegistryHelper;
+import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber
-public class ExampleConfig {
+public class ArsInstrumentumConfig {
 
     public static void registerGlyphConfigs(){
-        RegistryHelper.generateConfig(ExampleMod.MODID, ArsNouveauRegistry.registeredSpells);
+        RegistryHelper.generateConfig(ArsInstrumentum.MODID, ArsNouveauRegistry.registeredSpells);
     }
 
     @SubscribeEvent

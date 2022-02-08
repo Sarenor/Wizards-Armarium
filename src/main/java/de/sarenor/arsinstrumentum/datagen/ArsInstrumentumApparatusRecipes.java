@@ -32,7 +32,7 @@ public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
     }
 
     private static Path getRecipePath(Path pathIn, String str) {
-        return pathIn.resolve("data/Apparatus/recipes/" + str + ".json");
+        return pathIn.resolve("data/apparatus/recipes/" + str + ".json");
     }
 
     @Override

@@ -5,28 +5,29 @@ import com.google.gson.GsonBuilder;
 import com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe;
 import com.hollingsworth.arsnouveau.api.enchanting_apparatus.IEnchantingRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeBuilder;
+import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
-import de.sarenor.arsinstrumentum.setup.ItemRegistry;
+import de.sarenor.arsinstrumentum.setup.Registration;
+import lombok.extern.slf4j.Slf4j;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.world.item.Items;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArsInstrumentumRecipes implements DataProvider {
+@Slf4j
+public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
-    private static final Logger LOGGER = LogManager.getLogger();
     private final DataGenerator generator;
     List<EnchantingApparatusRecipe> recipes = new ArrayList<>();
 
-    public ArsInstrumentumRecipes(DataGenerator generatorIn) {
+    public ArsInstrumentumApparatusRecipes(DataGenerator generatorIn) {
+        super(generatorIn);
         this.generator = generatorIn;
     }
 
@@ -36,7 +37,7 @@ public class ArsInstrumentumRecipes implements DataProvider {
 
     @Override
     public void run(HashCache cache) throws IOException {
-        LOGGER.info("ArsInstrumentum: Recipe-Generation started");
+        log.info("ArsInstrumentum: Recipe-Generation started");
         addEntries();
         Path output = this.generator.getOutputFolder();
         for (IEnchantingRecipe g : recipes) {
@@ -46,12 +47,12 @@ public class ArsInstrumentumRecipes implements DataProvider {
                 DataProvider.save(GSON, cache, ((EnchantingApparatusRecipe) g).asRecipe(), path);
             }
         }
-        LOGGER.info("ArsInstrumentum: Recipe-Generation ended");
+        log.info("ArsInstrumentum: Recipe-Generation ended");
     }
 
     public void addEntries() {
         this.recipes.add(ApparatusRecipeBuilder.builder()
-                .withResult(ItemRegistry.WIZARDS_VESTIUM.get())
+                .withResult(Registration.WIZARDS_ARMARIUM.get())
                 .withReagent(ItemsRegistry.MUNDANE_BELT)
                 .withPedestalItem(4, ItemsRegistry.BLAZE_FIBER)
                 .withPedestalItem(2, Items.DIAMOND)
@@ -62,6 +63,6 @@ public class ArsInstrumentumRecipes implements DataProvider {
 
     @Override
     public String getName() {
-        return "ArsInstrumntumApparatus";
+        return "ArsInstrumentumApparatus";
     }
 }

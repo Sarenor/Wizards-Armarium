@@ -20,6 +20,10 @@ buildscript {
 
 }
 
+plugins {
+  id "io.freefair.lombok" version "6.3.0"
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
@@ -31,7 +35,7 @@ apply plugin: 'maven-publish'
 
 version = '1.0.0'
 group = 'de.sarenor.arsinstrumentum' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'arsinstrumentum-1.18.1'
+archivesBaseName = 'ars_instrumentum-1.18.1'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 minecraft {
@@ -97,10 +101,10 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'arsinstrumentum', '--all', '--output', file('src/generated/resources/'), "--existing", "\"" + sourceSets.main.resources.srcDirs[0] + "\""
+            args '--mod', 'ars_instrumentum', '--all', '--output', file('src/generated/resources/'), "--existing", "\"" + sourceSets.main.resources.srcDirs[0] + "\""
 
             mods {
-                an_addon {
+                ars_instrumentum {
                     source sourceSets.main
                 }
             }
@@ -154,7 +158,6 @@ dependencies {
     implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.3')
 
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-
 
 }
 

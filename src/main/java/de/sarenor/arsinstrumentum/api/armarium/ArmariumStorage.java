@@ -34,7 +34,6 @@ public class ArmariumStorage {
                 armariumSlots.put(slot, ArmariumSlot.deserialize(tag.getCompound(slot.name())));
             }
         }
-        return;
     }
 
     public ArmariumSlot storeAndGet(List<ItemStack> armorItems, List<ItemStack> hotbarItems) {

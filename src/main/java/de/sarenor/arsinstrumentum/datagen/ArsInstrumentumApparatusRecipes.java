@@ -8,7 +8,7 @@ import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeBuilder;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import de.sarenor.arsinstrumentum.setup.Registration;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
@@ -19,7 +19,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+@Log4j2
 public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();

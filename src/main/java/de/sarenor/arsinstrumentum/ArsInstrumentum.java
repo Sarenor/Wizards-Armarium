@@ -1,5 +1,6 @@
 package de.sarenor.arsinstrumentum;
 
+import de.sarenor.arsinstrumentum.network.Networking;
 import de.sarenor.arsinstrumentum.setup.ArsInstrumentumConfig;
 import de.sarenor.arsinstrumentum.setup.ArsNouveauRegistry;
 import de.sarenor.arsinstrumentum.setup.Registration;
@@ -29,7 +30,7 @@ public class ArsInstrumentum {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-
+        Networking.registerMessages();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

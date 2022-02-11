@@ -1,14 +1,14 @@
 package de.sarenor.arsinstrumentum.datagen;
 
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = ArsInstrumentum.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@Slf4j
+@Log4j2
 public class DataGenerators {
 
     @SubscribeEvent

@@ -3,7 +3,7 @@ package de.sarenor.arsinstrumentum.datagen;
 import com.google.common.base.Preconditions;
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import de.sarenor.arsinstrumentum.setup.Registration;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -12,7 +12,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-@Slf4j
+@Log4j2
 public class ArsInstrumentumItemModels extends ItemModelProvider {
 
     public ArsInstrumentumItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {

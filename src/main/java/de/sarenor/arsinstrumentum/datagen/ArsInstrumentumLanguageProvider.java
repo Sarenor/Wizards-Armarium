@@ -20,6 +20,9 @@ public class ArsInstrumentumLanguageProvider extends LanguageProvider {
         log.info("ArsInstrumentum: AddTranslation started");
         add(Registration.WIZARDS_ARMARIUM.get(), "Wizards Armarium");
         add(SWITCH_ARMARIUM_SLOT_ID, "Switch Wizards Armarium");
+        add("ars_instrumentum.page." + Registration.WIZARDS_ARMARIUM.get().getRegistryName(), """
+                A wizard is always prepared for all eventualities.
+                With the Wizards Armarium your wardrobe travels with you and allows you to switch between 3 different Armor and Hotbar configurations""");
         log.info("ArsInstrumentum: AddTranslation ended");
     }
 }

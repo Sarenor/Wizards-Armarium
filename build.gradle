@@ -203,6 +203,12 @@ publishing {
     }
 }
 
+mixin {
+    add sourceSets.main, "ars_instrumentum.refmap.json"
+
+    config "ars_instrumentum.mixins.json"
+}
+
 
 // Prevent Mixin annotation processor from getting into IDEA's annotation processor settings
 // Copied from Botania

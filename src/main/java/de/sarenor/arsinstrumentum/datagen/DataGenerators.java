@@ -18,6 +18,7 @@ public class DataGenerators {
         generator.addProvider(new ArsInstrumentumApparatusRecipes(generator));
         generator.addProvider(new ArsInstrumentumLanguageProvider(generator, "en_us"));
         generator.addProvider(new ArsInstrumentumItemModels(generator, event.getExistingFileHelper()));
+        generator.addProvider(new PatchouliProvider(generator));
         log.info("Ars Instrumentum: Data Generation ended.");
     }
 }

@@ -32,7 +32,7 @@ public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
     }
 
     private static Path getRecipePath(Path pathIn, String str) {
-        return pathIn.resolve("data/ars_instrumentum/apparatus/recipes/" + str + ".json");
+        return pathIn.resolve("data/ars_instrumentum/recipes/apparatus/" + str + ".json");
     }
 
     @Override
@@ -64,49 +64,49 @@ public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
                 .withResult(ItemsRegistry.ARCHMAGE_HOOD)
                 .withReagent(ItemsRegistry.APPRENTICE_HOOD)
                 .withPedestalItem(4, ItemsRegistry.END_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.ARCHMAGE_ROBES)
                 .withReagent(ItemsRegistry.APPRENTICE_ROBES)
                 .withPedestalItem(4, ItemsRegistry.END_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.ARCHMAGE_LEGGINGS)
                 .withReagent(ItemsRegistry.APPRENTICE_LEGGINGS)
                 .withPedestalItem(4, ItemsRegistry.END_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.ARCHMAGE_BOOTS)
                 .withReagent(ItemsRegistry.APPRENTICE_BOOTS)
                 .withPedestalItem(4, ItemsRegistry.END_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.APPRENTICE_HOOD)
                 .withReagent(ItemsRegistry.NOVICE_HOOD)
                 .withPedestalItem(4, ItemsRegistry.BLAZE_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.APPRENTICE_ROBES)
                 .withReagent(ItemsRegistry.NOVICE_BOOTS)
                 .withPedestalItem(4, ItemsRegistry.BLAZE_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.APPRENTICE_LEGGINGS)
                 .withReagent(ItemsRegistry.NOVICE_LEGGINGS)
                 .withPedestalItem(4, ItemsRegistry.BLAZE_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
         this.recipes.add(ApparatusRecipeBuilder.builder()
                 .withResult(ItemsRegistry.APPRENTICE_BOOTS)
                 .withReagent(ItemsRegistry.NOVICE_BOOTS)
                 .withPedestalItem(4, ItemsRegistry.BLAZE_FIBER)
-                //.keepEnchantmentsOfReagent(true)
+                //.keepNbtOfReagent(true)
                 .build());
     }
 

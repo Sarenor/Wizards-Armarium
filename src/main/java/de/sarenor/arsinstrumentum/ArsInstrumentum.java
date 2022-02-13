@@ -1,8 +1,6 @@
 package de.sarenor.arsinstrumentum;
 
 import de.sarenor.arsinstrumentum.network.Networking;
-import de.sarenor.arsinstrumentum.setup.ArsInstrumentumConfig;
-import de.sarenor.arsinstrumentum.setup.ArsNouveauRegistry;
 import de.sarenor.arsinstrumentum.setup.Registration;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,10 +16,7 @@ public class ArsInstrumentum {
     public static final String MODID = "ars_instrumentum";
     public static ForgeConfigSpec SERVER_CONFIG;
 
-
     public ArsInstrumentum() {
-        ArsNouveauRegistry.registerGlyphs();
-        ArsInstrumentumConfig.registerGlyphConfigs();
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         Registration.init(bus);
         bus.addListener(this::setup);

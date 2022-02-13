@@ -146,23 +146,22 @@ repositories {
 }
 dependencies {
 
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.9'
-    runtimeOnly fg.deobf("curse.maven:exp-401955:3591753")  // Ars Nouveau 1.24.2
-    compileOnly fg.deobf("curse.maven:exp-401955:3591753")
+    minecraft 'net.minecraftforge:forge:1.18.1-39.0.76'
+    runtimeOnly fg.deobf("curse.maven:exp-401955:3635656")  // Ars Nouveau 1.24.2
+    compileOnly fg.deobf("curse.maven:exp-401955:3635656")
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-61:api")
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-61")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-61")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-65:api")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-65")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.1-65")
 
     compileOnly fg.deobf("mezz.jei:jei-1.18:9.0.0.40:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18:9.0.0.40")
 
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.3.0:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.1-5.0.3.0")
-    implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.3')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.11')
 
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-
 }
 
 

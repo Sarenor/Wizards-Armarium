@@ -1,4 +1,4 @@
-package de.sarenor.arsinstrumentum.api.armarium;
+package de.sarenor.arsinstrumentum.items.curios.armarium;
 
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import lombok.Getter;
@@ -29,9 +29,9 @@ public class ArmariumSlot {
     private static List<ItemStack> deserializeItemList(CompoundTag compoundTag, String armariumArmorTag) {
         List<ItemStack> itemStacks = new ArrayList<>();
         if (compoundTag.contains(armariumArmorTag)) {
-            ListTag armorList = compoundTag.getList(armariumArmorTag, 10);
-            for (int i = 0; i < armorList.size(); i++) {
-                itemStacks.add(ItemStack.of(armorList.getCompound(i)));
+            ListTag itemList = compoundTag.getList(armariumArmorTag, 10);
+            for (int i = 0; i < itemList.size(); i++) {
+                itemStacks.add(ItemStack.of(itemList.getCompound(i)));
             }
             return itemStacks;
         }

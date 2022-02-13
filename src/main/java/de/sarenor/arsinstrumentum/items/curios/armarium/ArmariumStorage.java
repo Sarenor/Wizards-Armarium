@@ -1,4 +1,4 @@
-package de.sarenor.arsinstrumentum.api.armarium;
+package de.sarenor.arsinstrumentum.items.curios.armarium;
 
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import net.minecraft.nbt.CompoundTag;

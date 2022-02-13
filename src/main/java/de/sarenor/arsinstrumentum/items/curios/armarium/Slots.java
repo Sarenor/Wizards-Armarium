@@ -1,4 +1,4 @@
-package de.sarenor.arsinstrumentum.api.armarium;
+package de.sarenor.arsinstrumentum.items.curios.armarium;
 
 public enum Slots {
     SLOT_ONE, SLOT_TWO, SLOT_THREE;

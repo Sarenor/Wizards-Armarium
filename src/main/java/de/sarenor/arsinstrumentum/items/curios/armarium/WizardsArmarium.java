@@ -1,14 +1,19 @@
 package de.sarenor.arsinstrumentum.items.curios.armarium;
 
 import com.hollingsworth.arsnouveau.api.item.ArsNouveauCurio;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +24,6 @@ public class WizardsArmarium extends ArsNouveauCurio {
     public static final String WIZARDS_ARMARIUM_ID = "wizards_armarium";
     private static final int HOTBAR_SIZE = 9;
     private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
-
-    public WizardsArmarium() {
-        super(WIZARDS_ARMARIUM_ID);
-    }
 
     public static void handleArmariumSwitch(ServerPlayer player) {
         ArmariumStorage armariumStorage = new ArmariumStorage(
@@ -54,6 +55,14 @@ public class WizardsArmarium extends ArsNouveauCurio {
         }
     }
 
-    public void wearableTick(LivingEntity player) {
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag p_77624_4_) {
+        ArmariumStorage armariumStorage = new ArmariumStorage(stack);
+        tooltip.add(new TextComponent(armariumStorage.getTooltip()));
+    }
+
+    @Override
+    public void wearableTick(LivingEntity livingEntity) {
+        // No op
     }
 }

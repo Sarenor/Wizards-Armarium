@@ -1,5 +1,6 @@
 package de.sarenor.arsinstrumentum.items;
 
+import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.hollingsworth.arsnouveau.common.entity.Starbuncle;
 import com.hollingsworth.arsnouveau.common.items.ModItem;
 import com.hollingsworth.arsnouveau.common.util.PortUtil;
@@ -8,9 +9,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,12 +23,15 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hollingsworth.arsnouveau.common.entity.Starbuncle.FROM_POS;
+import static com.hollingsworth.arsnouveau.common.entity.Starbuncle.TO_POS;
+
 public class ScrollOfSaveStarbuncle extends ModItem {
 
     public static final String SCROLL_OF_SAVE_STARBUNCLE_ID = "scroll_of_save_starbuncle";
-    public static final String SAVED_CONFIGURATION = "ars_instrumentum.scroll_of_save_starbuncle.saved";
-    public static final String APPLIED_CONFIGURATION = "ars_instrumentum.scroll_of_save_starbuncle.applied";
-    public static final String CLEARED_CONFIGURATION = "ars_instrumentum.scroll_of_save_starbuncle.cleared";
+    public static final String SAVED_CONFIGURATION = "Saved Starbuncle configuration";
+    public static final String APPLIED_CONFIGURATION = "Applied Starbuncle configuration";
+    public static final String CLEARED_CONFIGURATION = "Cleared Starbuncle configuration";
 
     private static final String X = "x";
     private static final String Y = "y";
@@ -35,10 +39,10 @@ public class ScrollOfSaveStarbuncle extends ModItem {
     private static final String FROM_LIST = "from_list";
     private static final String TO_LIST = "to_list";
     private static final String TOOLTIP = "tooltip";
-    private static final String SCROLL_OF_SAVE_TAG_ID = "scroll_of_save";
+    private static final String SCROLL_OF_SAVE_TAG_ID = "scroll_of_save_starbuncle_tag";
 
-    public ScrollOfSaveStarbuncle(Properties pProperties) {
-        super(pProperties);
+    public ScrollOfSaveStarbuncle() {
+        super((new Properties()).stacksTo(1).tab(ArsNouveau.itemGroup));
     }
 
     @Override
@@ -50,18 +54,20 @@ public class ScrollOfSaveStarbuncle extends ModItem {
         ItemStack heldScroll = playerEntity.getItemInHand(hand);
         if (target instanceof Starbuncle starbuncle) {
             if (playerEntity.isShiftKeyDown()) {
-                store(heldScroll, starbuncle);
-                PortUtil.sendMessage(playerEntity, new TranslatableComponent(SAVED_CONFIGURATION));
+                apply(heldScroll, starbuncle, playerEntity);
             } else {
-                apply(heldScroll, starbuncle);
-                PortUtil.sendMessage(playerEntity, new TranslatableComponent(APPLIED_CONFIGURATION));
+                store(heldScroll, starbuncle, playerEntity);
             }
-        } else if (playerEntity.isShiftKeyDown()) {
-            clear(heldScroll);
-            PortUtil.sendMessage(playerEntity, new TranslatableComponent(CLEARED_CONFIGURATION));
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player playerEntity, InteractionHand hand) {
+        if (playerEntity.isShiftKeyDown() && hand == InteractionHand.MAIN_HAND) {
+            clear(playerEntity.getItemInHand(hand), playerEntity);
+        }
+        return InteractionResultHolder.pass(playerEntity.getItemInHand(hand));
     }
 
     @Override
@@ -72,35 +78,40 @@ public class ScrollOfSaveStarbuncle extends ModItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag p_77624_4_) {
         CompoundTag scrollTag = stack.getOrCreateTag();
-        if(scrollTag.contains(SCROLL_OF_SAVE_TAG_ID)) {
+        if (scrollTag.contains(SCROLL_OF_SAVE_TAG_ID)) {
             tooltip.add(new TextComponent(scrollTag.getCompound(SCROLL_OF_SAVE_TAG_ID).getString(TOOLTIP)));
         }
     }
 
-    private void store(ItemStack scroll, Starbuncle starbuncle) {
+    private void store(ItemStack scroll, Starbuncle starbuncle, Player playerEntity) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         CompoundTag configTag = new CompoundTag();
         configTag.put(FROM_LIST, serializeBlockPosList(starbuncle.FROM_LIST));
         configTag.put(TO_LIST, serializeBlockPosList(starbuncle.TO_LIST));
         configTag.putString(TOOLTIP, "Stored Config with " + starbuncle.FROM_LIST.size() + " Take-Locations and "
-                + starbuncle.TO_LIST + " Deposit-Locations");
+                + starbuncle.TO_LIST.size() + " Deposit-Locations");
         scrollTag.put(SCROLL_OF_SAVE_TAG_ID, configTag);
         scroll.setTag(scrollTag);
+        PortUtil.sendMessage(playerEntity, new TextComponent(SAVED_CONFIGURATION));
     }
 
-    private void apply(ItemStack scroll, Starbuncle starbuncle) {
+    private void apply(ItemStack scroll, Starbuncle starbuncle, Player playerEntity) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         if (scrollTag.contains(SCROLL_OF_SAVE_TAG_ID)) {
             CompoundTag configTag = scrollTag.getCompound(SCROLL_OF_SAVE_TAG_ID);
             starbuncle.FROM_LIST = deserializeBlockPosList(configTag.getList(FROM_LIST, 10));
             starbuncle.TO_LIST = deserializeBlockPosList(configTag.getList(TO_LIST, 10));
+            starbuncle.getEntityData().set(FROM_POS, starbuncle.FROM_LIST.size());
+            starbuncle.getEntityData().set(TO_POS, starbuncle.TO_LIST.size());
+            PortUtil.sendMessage(playerEntity, new TextComponent(APPLIED_CONFIGURATION));
         }
     }
 
-    private void clear(ItemStack scroll) {
+    private void clear(ItemStack scroll, Player playerEntity) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         scrollTag.remove(SCROLL_OF_SAVE_TAG_ID);
         scroll.setTag(scrollTag);
+        PortUtil.sendMessage(playerEntity, new TextComponent(CLEARED_CONFIGURATION));
     }
 
     private ListTag serializeBlockPosList(List<BlockPos> blockPositions) {

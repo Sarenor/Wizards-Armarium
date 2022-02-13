@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -49,5 +51,12 @@ public class ArmariumSlot {
         serialized.put(ARMARIUM_ARMOR_TAG, armorList);
         serialized.put(ARMARIUM_HOTBAR_TAG, hotbarList);
         return serialized;
+    }
+
+    public String listArmor() {
+        return armor.stream()
+                .map(ItemStack::getDisplayName)
+                .map(Component::getString)
+                .collect(Collectors.joining(", "));
     }
 }

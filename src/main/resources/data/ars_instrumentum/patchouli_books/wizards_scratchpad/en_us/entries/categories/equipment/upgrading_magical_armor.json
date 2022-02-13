@@ -9,35 +9,35 @@
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:apprentice_boots"
+      "recipe": "ars_instrumentum:apparatus/apprentice_boots"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:apprentice_hood"
+      "recipe": "ars_instrumentum:apparatus/apprentice_hood"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:apprentice_leggings"
+      "recipe": "ars_instrumentum:apparatus/apprentice_leggings"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:apprentice_robes"
+      "recipe": "ars_instrumentum:apparatus/apprentice_robes"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:archmage_boots"
+      "recipe": "ars_instrumentum:apparatus/archmage_boots"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:archmage_hood"
+      "recipe": "ars_instrumentum:apparatus/archmage_hood"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:archmage_leggings"
+      "recipe": "ars_instrumentum:apparatus/archmage_leggings"
     },
     {
       "type": "ars_nouveau:apparatus_recipe",
-      "recipe": "ars_instrumentum:archmage_robes"
+      "recipe": "ars_instrumentum:apparatus/archmage_robes"
     }
   ]
 }

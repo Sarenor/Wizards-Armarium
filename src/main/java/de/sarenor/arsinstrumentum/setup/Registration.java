@@ -2,6 +2,7 @@ package de.sarenor.arsinstrumentum.setup;
 
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import de.sarenor.arsinstrumentum.items.ScrollOfSaveStarbuncle;
+import de.sarenor.arsinstrumentum.items.curios.RunicStorageStone;
 import de.sarenor.arsinstrumentum.items.curios.armarium.WizardsArmarium;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,6 +16,7 @@ public class Registration {
 
     public static final RegistryObject<Item> WIZARDS_ARMARIUM = ITEMS.register(WizardsArmarium.WIZARDS_ARMARIUM_ID, WizardsArmarium::new);
     public static final RegistryObject<Item> SCROLL_OF_SAVE_STARBUNCLE = ITEMS.register(ScrollOfSaveStarbuncle.SCROLL_OF_SAVE_STARBUNCLE_ID, ScrollOfSaveStarbuncle::new);
+    public static final RegistryObject<Item> RUNIC_STORAGE_STONE = ITEMS.register(RunicStorageStone.RUNIC_STORAGE_STONE_ID, RunicStorageStone::new);
 
     public static void init(IEventBus bus) {
         ITEMS.register(bus);

@@ -6,7 +6,6 @@ import com.hollingsworth.arsnouveau.common.items.ModItem;
 import com.hollingsworth.arsnouveau.common.util.PortUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
@@ -20,24 +19,23 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.hollingsworth.arsnouveau.common.entity.Starbuncle.FROM_POS;
 import static com.hollingsworth.arsnouveau.common.entity.Starbuncle.TO_POS;
+import static de.sarenor.arsinstrumentum.utils.SerializationUtiils.*;
 
 public class ScrollOfSaveStarbuncle extends ModItem {
 
     public static final String SCROLL_OF_SAVE_STARBUNCLE_ID = "scroll_of_save_starbuncle";
     public static final String SAVED_CONFIGURATION = "Saved Starbuncle configuration";
     public static final String APPLIED_CONFIGURATION = "Applied Starbuncle configuration";
-    public static final String CLEARED_CONFIGURATION = "Cleared Starbuncle configuration";
+    public static final String CLEARED_CONFIGURATION = "Cleared savedStarbuncle configuration";
 
-    private static final String X = "x";
-    private static final String Y = "y";
-    private static final String Z = "z";
     private static final String FROM_LIST = "from_list";
     private static final String TO_LIST = "to_list";
+    private static final String ALLOWED_ITEMS = "allowed_items";
+    private static final String IGNORED_ITEMS = "denied_items";
     private static final String TOOLTIP = "tooltip";
     private static final String SCROLL_OF_SAVE_TAG_ID = "scroll_of_save_starbuncle_tag";
 
@@ -63,6 +61,7 @@ public class ScrollOfSaveStarbuncle extends ModItem {
         return InteractionResult.SUCCESS;
     }
 
+    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player playerEntity, InteractionHand hand) {
         if (playerEntity.isShiftKeyDown() && hand == InteractionHand.MAIN_HAND) {
             clear(playerEntity.getItemInHand(hand), playerEntity);
@@ -83,60 +82,40 @@ public class ScrollOfSaveStarbuncle extends ModItem {
         }
     }
 
-    private void store(ItemStack scroll, Starbuncle starbuncle, Player playerEntity) {
+    private void store(ItemStack scroll, Starbuncle starbuncle, Player player) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         CompoundTag configTag = new CompoundTag();
         configTag.put(FROM_LIST, serializeBlockPosList(starbuncle.FROM_LIST));
         configTag.put(TO_LIST, serializeBlockPosList(starbuncle.TO_LIST));
+        configTag.put(ALLOWED_ITEMS, serializeItemList(starbuncle.allowedItems));
+        configTag.put(IGNORED_ITEMS, serializeItemList(starbuncle.ignoreItems));
         configTag.putString(TOOLTIP, "Stored Config with " + starbuncle.FROM_LIST.size() + " Take-Locations and "
                 + starbuncle.TO_LIST.size() + " Deposit-Locations");
         scrollTag.put(SCROLL_OF_SAVE_TAG_ID, configTag);
         scroll.setTag(scrollTag);
-        PortUtil.sendMessage(playerEntity, new TextComponent(SAVED_CONFIGURATION));
+        PortUtil.sendMessage(player, new TextComponent(SAVED_CONFIGURATION));
     }
 
-    private void apply(ItemStack scroll, Starbuncle starbuncle, Player playerEntity) {
+    private void apply(ItemStack scroll, Starbuncle starbuncle, Player player) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         if (scrollTag.contains(SCROLL_OF_SAVE_TAG_ID)) {
             CompoundTag configTag = scrollTag.getCompound(SCROLL_OF_SAVE_TAG_ID);
-            starbuncle.FROM_LIST = deserializeBlockPosList(configTag.getList(FROM_LIST, 10));
-            starbuncle.TO_LIST = deserializeBlockPosList(configTag.getList(TO_LIST, 10));
+            starbuncle.FROM_LIST = deserializeBlockPosList(configTag, FROM_LIST);
+            starbuncle.TO_LIST = deserializeBlockPosList(configTag, TO_LIST);
+            starbuncle.allowedItems = deserializeItemList(configTag, ALLOWED_ITEMS);
+            starbuncle.ignoreItems = deserializeItemList(configTag, IGNORED_ITEMS);
             starbuncle.getEntityData().set(FROM_POS, starbuncle.FROM_LIST.size());
             starbuncle.getEntityData().set(TO_POS, starbuncle.TO_LIST.size());
-            PortUtil.sendMessage(playerEntity, new TextComponent(APPLIED_CONFIGURATION));
+            PortUtil.sendMessage(player, new TextComponent(APPLIED_CONFIGURATION));
         }
     }
 
-    private void clear(ItemStack scroll, Player playerEntity) {
+    private void clear(ItemStack scroll, Player player) {
         CompoundTag scrollTag = scroll.getOrCreateTag();
         scrollTag.remove(SCROLL_OF_SAVE_TAG_ID);
         scroll.setTag(scrollTag);
-        PortUtil.sendMessage(playerEntity, new TextComponent(CLEARED_CONFIGURATION));
+        PortUtil.sendMessage(player, new TextComponent(CLEARED_CONFIGURATION));
     }
 
-    private ListTag serializeBlockPosList(List<BlockPos> blockPositions) {
-        ListTag serializedBlockPositions = new ListTag();
-        blockPositions.forEach(blockPos -> serializedBlockPositions.add(serializeBlockPos(blockPos)));
-        return serializedBlockPositions;
-    }
 
-    private CompoundTag serializeBlockPos(BlockPos blockPos) {
-        CompoundTag serializedBlockPos = new CompoundTag();
-        serializedBlockPos.putInt(X, blockPos.getX());
-        serializedBlockPos.putInt(Y, blockPos.getY());
-        serializedBlockPos.putInt(Z, blockPos.getZ());
-        return serializedBlockPos;
-    }
-
-    private List<BlockPos> deserializeBlockPosList(ListTag serializedBlockPositions) {
-        List<BlockPos> blockPositions = new ArrayList<>();
-        for (int i = 0; i < serializedBlockPositions.size(); i++) {
-            blockPositions.add(deserializeBlockPos(serializedBlockPositions.getCompound(i)));
-        }
-        return blockPositions;
-    }
-
-    private BlockPos deserializeBlockPos(CompoundTag serializedBlockPosition) {
-        return new BlockPos(serializedBlockPosition.getInt(X), serializedBlockPosition.getInt(Y), serializedBlockPosition.getInt(Z));
-    }
 }

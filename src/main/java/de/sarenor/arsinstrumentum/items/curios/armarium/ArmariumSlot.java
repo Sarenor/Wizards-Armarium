@@ -4,13 +4,15 @@ import de.sarenor.arsinstrumentum.ArsInstrumentum;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static de.sarenor.arsinstrumentum.utils.SerializationUtiils.deserializeItemList;
+import static de.sarenor.arsinstrumentum.utils.SerializationUtiils.serializeItemList;
 
 @Getter
 @Setter
@@ -28,28 +30,10 @@ public class ArmariumSlot {
         return armariumSlot;
     }
 
-    private static List<ItemStack> deserializeItemList(CompoundTag compoundTag, String armariumArmorTag) {
-        List<ItemStack> itemStacks = new ArrayList<>();
-        if (compoundTag.contains(armariumArmorTag)) {
-            ListTag itemList = compoundTag.getList(armariumArmorTag, 10);
-            for (int i = 0; i < itemList.size(); i++) {
-                itemStacks.add(ItemStack.of(itemList.getCompound(i)));
-            }
-            return itemStacks;
-        }
-        return itemStacks;
-    }
-
     public CompoundTag serialize() {
-        ListTag armorList = new ListTag();
-        ListTag hotbarList = new ListTag();
         CompoundTag serialized = new CompoundTag();
-
-        armor.forEach((itemstack) -> armorList.add(itemstack.serializeNBT()));
-        hotbar.forEach((itemstack) -> hotbarList.add(itemstack.serializeNBT()));
-
-        serialized.put(ARMARIUM_ARMOR_TAG, armorList);
-        serialized.put(ARMARIUM_HOTBAR_TAG, hotbarList);
+        serialized.put(ARMARIUM_ARMOR_TAG, serializeItemList(armor));
+        serialized.put(ARMARIUM_HOTBAR_TAG, serializeItemList(hotbar));
         return serialized;
     }
 

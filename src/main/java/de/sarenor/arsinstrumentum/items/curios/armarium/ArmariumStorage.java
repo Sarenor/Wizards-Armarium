@@ -49,7 +49,11 @@ public class ArmariumStorage {
     }
 
     public String getTooltip() {
-        return "Next slots armor is: " + armariumSlots.get(Slots.getNextSlot(currentSlot));
+        if (armariumSlots != null && !armariumSlots.isEmpty()) {
+            return "Next slots armor is: " + armariumSlots.get(Slots.getNextSlot(currentSlot)).listArmor();
+        } else {
+            return "";
+        }
     }
 
     private void writeArmariumStorageToArmariumItem() {

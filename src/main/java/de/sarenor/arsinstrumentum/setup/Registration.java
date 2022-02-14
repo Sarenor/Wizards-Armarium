@@ -1,8 +1,8 @@
 package de.sarenor.arsinstrumentum.setup;
 
 import de.sarenor.arsinstrumentum.ArsInstrumentum;
+import de.sarenor.arsinstrumentum.items.RunicStorageStone;
 import de.sarenor.arsinstrumentum.items.ScrollOfSaveStarbuncle;
-import de.sarenor.arsinstrumentum.items.curios.RunicStorageStone;
 import de.sarenor.arsinstrumentum.items.curios.armarium.WizardsArmarium;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;

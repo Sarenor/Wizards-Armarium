@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
-public class ArsInstrumentumApparatusRecipes extends ApparatusRecipeProvider {
+public class ApparatusRecipes extends ApparatusRecipeProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
     private final DataGenerator generator;
     List<EnchantingApparatusRecipe> recipes = new ArrayList<>();
 
-    public ArsInstrumentumApparatusRecipes(DataGenerator generatorIn) {
+    public ApparatusRecipes(DataGenerator generatorIn) {
         super(generatorIn);
         this.generator = generatorIn;
     }

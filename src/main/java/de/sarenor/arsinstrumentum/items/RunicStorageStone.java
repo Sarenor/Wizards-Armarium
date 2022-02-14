@@ -1,4 +1,4 @@
-package de.sarenor.arsinstrumentum.items.curios;
+package de.sarenor.arsinstrumentum.items;
 
 import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.hollingsworth.arsnouveau.api.util.NBTUtil;
@@ -27,12 +27,12 @@ import static de.sarenor.arsinstrumentum.utils.SerializationUtiils.*;
 
 public class RunicStorageStone extends ModItem {
     public static final String RUNIC_STORAGE_STONE_ID = "runic_storage_stone";
+    public static final String RUNIC_STORAGE_STONE_ALTERNATE_RECIPE_ID = "runic_storage_stone_alternate";
     public static final String SAVED_CONFIGURATION = "Saved Relay configuration";
     public static final String APPLIED_CONFIGURATION = "Applied Relay configuration";
     public static final String CANT_APPLY_EMPTY_CONFIGURATION = "Cannot apply empty configuration to Relay";
     public static final String CANT_APPLY_SPLITTER_CONFIGURATION_TO_ARCANE = "Cannot apply Splitter configuration to Arcane Relay";
     public static final String CANT_APPLY_ARCANE_CONFIGURATION_TO_SPLITTER = "Cannot apply Arcane configuration to Splitter Relay";
-    public static final String CLEARED_CONFIGURATION = "Cleared saved Relay configuration";
 
     private static final String FROM_CONFIGURATION = "from_configuration";
     private static final String TO_CONFIGURATION = "to_configuration";

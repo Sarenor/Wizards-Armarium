@@ -13,9 +13,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
 @Log4j2
-public class ArsInstrumentumItemModels extends ItemModelProvider {
+public class ItemModels extends ItemModelProvider {
 
-    public ArsInstrumentumItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public ItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, ArsInstrumentum.MODID, existingFileHelper);
     }
 

@@ -1,13 +1,13 @@
 package de.sarenor.arsinstrumentum.items.curios.armarium;
 
 import com.hollingsworth.arsnouveau.api.item.ArsNouveauCurio;
+import de.sarenor.arsinstrumentum.utils.CuriosUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -29,13 +29,14 @@ public class WizardsArmarium extends ArsNouveauCurio {
         ArmariumStorage armariumStorage = new ArmariumStorage(
                 CuriosApi.getCuriosHelper().findEquippedCurio(WIZARDS_ARMARIUM.get(), player).get().getRight());
         ArmariumSlot armariumSlot = armariumStorage.storeAndGet(iterableToList(player.getArmorSlots()),
-                player.getInventory().items.subList(0, 9));
+                player.getInventory().items.subList(0, 9), CuriosUtil.getSpellfoci(player));
 
         setArmor(player, armariumSlot.getArmor());
         setHotbar(player, armariumSlot.getHotbar());
+        CuriosUtil.setSpellfoci(player, armariumSlot.getSpellfoci());
     }
 
-    private static void setArmor(Player player, List<ItemStack> armorItems) {
+    private static void setArmor(ServerPlayer player, List<ItemStack> armorItems) {
         for (EquipmentSlot equipmentSlot : ARMOR_SLOTS) {
             Optional<ItemStack> armorItem = armorItems.stream()
                     .filter(itemStack -> LivingEntity.getEquipmentSlotForItem(itemStack).equals(equipmentSlot))
@@ -44,7 +45,7 @@ public class WizardsArmarium extends ArsNouveauCurio {
         }
     }
 
-    private static void setHotbar(Player player, List<ItemStack> hotbarItems) {
+    private static void setHotbar(ServerPlayer player, List<ItemStack> hotbarItems) {
         Inventory inventory = player.getInventory();
         for (int i = 0; i < HOTBAR_SIZE; i++) {
             if (i < hotbarItems.size()) {

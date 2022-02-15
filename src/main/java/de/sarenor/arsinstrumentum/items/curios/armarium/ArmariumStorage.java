@@ -36,10 +36,11 @@ public class ArmariumStorage {
         }
     }
 
-    public ArmariumSlot storeAndGet(List<ItemStack> armorItems, List<ItemStack> hotbarItems) {
+    public ArmariumSlot storeAndGet(List<ItemStack> armorItems, List<ItemStack> hotbarItems, List<ItemStack> spellfocus) {
         ArmariumSlot armariumSlot = armariumSlots.getOrDefault(currentSlot, new ArmariumSlot());
         armariumSlot.setArmor(armorItems);
         armariumSlot.setHotbar(hotbarItems);
+        armariumSlot.setSpellfoci(spellfocus);
         armariumSlots.put(currentSlot, armariumSlot);
 
         currentSlot = Slots.getNextSlot(currentSlot);

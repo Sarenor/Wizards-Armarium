@@ -1,37 +1,24 @@
-# Ars-Nouveau-Example-Addon
+# Ars Instrumentum
 
-An example repository for making an addon for Ars Nouveau! See the wiki for more info.
+A small Addon to Ars Nouveau to provide a handful of utility items that should improve your quality of life.
 
-# Ars Nouveau 2021 Winter Addon-athon
+## Current Features:
 
-Starts November 23rd, to December 31st 2021. For help developing your addon, questions about the API, or to get ideas from the community, join the discord! https://discord.gg/y7TMXZu
-Ars Nouveau features an extensive API for addons, as well as this repo that you can fork and start immediately! Any type of addon is eligible! Think up some new glyphs, rituals, source generation, or summons!
+- Upgradeable Mage Robes (Novice Armor can be upgraded to Mage Armor in the Enchanting Apparatus and will keep
+  enchantments, same for Mage -> Archmage)
+- Scroll of Save Starbuncle (Save your Starbuncles Configuration to an item)
+- Runic Stone of Storage (Save your Source-Relay Configuration to an item)
+- Wizards Armarium (Magical Wardrobe that can switch between 3 different configurations for your hotbar, armor and
+  spellfocus/spellfoci)
 
-**Rules**
+## Possible Upcoming Features:
 
-Eligible mods must be publicly available by the 31st for voting. They must have Ars Nouveau as a core dependency. If you have already started an addon, you can submit it as long as it is still in development and not yet released publicly.
- To enter your mod for voting, you may DM it to me or post it here to request to be added to the list.
+Life can always happen, so no promises!
 
-
-**Prizes**
-
-To enter your mod for voting, you may DM it to me via discord, post it in the Ars Nouveau discord, or post it here to request to be added to the list. Places and prizes will be determined by a public vote held via the discord once the competition has ended. 
-
-* First Place - $50 Redbubble Giftcard and $100 USD worth of Curseforge points (Sponsored by Curseforge)
-* Second Place - $50 Redbubble Gift Card
-* Third Place - $50 Redbubble Gift Card
-* Best Project Page (looks, reads, and presents well) - $50 USD worth of Curseforge points (Sponsored by Curseforge)
-
-Winners will also be featured in the Curseforge Featured Projects page.
-
-**Getting Started**
-
-* Fork this repo for a ready to build work space.
-* Join the Ars Nouveau discord to ask questions, get help, or get ideas.
-
-Some useful links for beginners:
-* https://mcforge.readthedocs.io/en/latest/
-* https://forge.gemwire.uk/wiki/
-* https://wiki.mcjty.eu/modding/index.php?title=Main_Page
-* https://github.com/baileyholl/Ars-Nouveau/tree/1.16.2/src/main/java/com/hollingsworth/arsnouveau/api (Full API documentation)
-* https://github.com/bernie-g/geckolib/wiki (Animation library used by Ars Nouveau, optional)
+- Make the Wizards Armarium Items directly accessible through a UI
+- New and unique texture for the Wizards Armarium instead of a Mundane Belt reskin
+- More differentiated texture for the Runic Stone of Storage
+- Block/Blockinteraction to read the stored Configurations of the Scroll of Save Starbuncle and Runic Stone of Storage
+- Item to help locate/summon Starbuncles in big modpacks with many mobspawns
+- Have the Wizards Armarium use a Radial Menu like the Spellbook instead of cycling through slots
+- Starby Upgrade Items (Speed, Carrying Capacity, Both...)

@@ -19,6 +19,9 @@ Life can always happen, so no promises!
 - New and unique texture for the Wizards Armarium instead of a Mundane Belt reskin
 - More differentiated texture for the Runic Stone of Storage
 - Block/Blockinteraction to read the stored Configurations of the Scroll of Save Starbuncle and Runic Stone of Storage
-- Item to help locate/summon Starbuncles in big modpacks with many mobspawns
+- Item to help locate/summon Starbuncles in big modpacks with many mobspawns (maybe expanded to other mobs)
 - Have the Wizards Armarium use a Radial Menu like the Spellbook instead of cycling through slots
 - Starby Upgrade Items (Speed, Carrying Capacity, Both...)
+- Forge Energy to Source device
+- Mob capture device or spell?
+- Colorplant that can be turned into any color of dye be added?

@@ -14,7 +14,7 @@ license="GNU Lesser General Public License v3.0"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId="ars_instrumentum" #mandatory
+modId="wizards_armarium" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
  # A display name for the mod
@@ -24,7 +24,7 @@ displayName="Ars Instrumentum" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="http://example.com/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="ars_instrumentum.png" #optional
+#logoFile="wizards_armarium.png" #optional
 # A text field displayed in the mod UI
 credits="Thanks for this example mod goes to the Ars Nouveau Discord who made me try my hand at modding, specifically to Bailey for providing an easy starter" #optional
 # A text field displayed in the mod UI
@@ -34,7 +34,7 @@ description='''
 Ars Instrumentum is a small set of magical utilities and tools that I wanted to have in addition to Ars Nouveau
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.ars_instrumentum]] #optional
+[[dependencies.wizards_armarium]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -46,29 +46,9 @@ Ars Instrumentum is a small set of magical utilities and tools that I wanted to 
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.ars_instrumentum]]
-    modId="patchouli"
-    mandatory=true
-    versionRange="[1.18.1-61,)"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.ars_instrumentum]]
+[[dependencies.wizards_armarium]]
     modId="curios"
     mandatory=true
     versionRange="[1.18.1-5.0.3.0,)"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.ars_instrumentum]]
-    modId="geckolib3"
-    mandatory=true
-    versionRange="[3.0.1,)"
-    ordering="AFTER"
-    side="BOTH"
-[[dependencies.ars_instrumentum]]
-    modId="ars_nouveau"
-    mandatory=true
-    versionRange="[2.0.2,)"
     ordering="AFTER"
     side="BOTH"
